@@ -1,0 +1,6 @@
+vim.keymap.set("", "<Space>", "<Nop>")
+require("config.lazy")
+require("config.autocmds")
+require("config.options")
+require("config.keymaps")
+vim.cmd("colorscheme everforest")
