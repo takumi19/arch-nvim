@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
-map("n", "<leader>qq", "<Cmd>qa<Cr>")
-map("n", "<leader>l", "<Cmd>Lazy<Cr>")
+map("n", "<leader>qq", "<Cmd>qa<Cr>", { desc = "Close all and quit" })
+map("n", "<leader>l", "<Cmd>Lazy<Cr>", { desc = "Lazy" })
 map("n", "<Esc>", "<Esc><Cmd>nohls<CR>")
 
 map("n", "j", "gj")
@@ -24,11 +24,11 @@ map("i", "<C-c>", "<Esc>")
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
-map("n", "<leader>-", "<C-w>s")
-map("n", "<leader>|", "<C-w>v")
+map("n", "<leader>-", "<C-w>s", { desc = "Split horizontally" })
+map("n", "<leader>|", "<C-w>v", { desc = "Split vertically" })
 
-map("n", "<leader>'", "<C-^>")
-map("n", "<leader>`", "<C-^>")
+map("n", "<leader>'", "<C-^>", { desc = "Prev buffer" })
+map("n", "<leader>`", "<C-^>", { desc = "Prev buffer" })
 
 -- map("n", "<leader>e", "<Cmd>Ex<Cr>")
 
