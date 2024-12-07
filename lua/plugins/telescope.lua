@@ -3,7 +3,7 @@ return {
     'nvim-telescope/telescope.nvim',
     version = false,
     lazy = false,
-    dependencies = { 
+    dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
     },
@@ -19,6 +19,12 @@ return {
       map('n', '<leader>fr', pickers.oldfiles, { desc = 'Find recent files' } )
       map('n', '<leader>sc', pickers.commands, { desc = 'Search commands' } )
       map('n', '<leader>uc', pickers.colorscheme, { desc = 'Pick colorscheme' } )
+      map('n', '<leader>ss', pickers.lsp_document_symbols, { desc = 'LSP document symbols' } )
+      map('n', '<leader>sS', pickers.lsp_workspace_symbols, { desc = 'LSP workspace symbols' } )
+      map('n', '<leader>sr', pickers.resume, { desc = 'Resume last search' } )
+      map('n', '<leader>:', pickers.command_history, { desc = 'Command history' } )
+      map('n', '<leader>sb', pickers.current_buffer_fuzzy_find, { desc = 'Buffer search' } )
+      map('n', 'gr', '<cmd>Telescope lsp_references show_line=false<cr>', { desc = 'Lsp references' } )
     end
   },
   {
