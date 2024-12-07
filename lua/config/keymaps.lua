@@ -14,6 +14,12 @@ map("n", "<C-u>", "<C-u>zz")
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
+map("n", "]q", "<cmd>cn<cr>")
+map("n", "[q", "<cmd>cp<cr>")
+
+map({"n", "v"}, "H", "<Cmd>bprev<Cr>")
+map({"n", "v"}, "L", "<Cmd>bnext<Cr>")
+
 -- map("c", "W", "w")
 
 map("x", "<leader>p", '"_dP')
@@ -29,6 +35,11 @@ map("n", "<leader>|", "<C-w>v", { desc = "Split vertically" })
 
 map("n", "<leader>'", "<C-^>", { desc = "Prev buffer" })
 map("n", "<leader>`", "<C-^>", { desc = "Prev buffer" })
+
+map("n", "<leader>st", "<cmd>TodoTelescope<cr>", { desc = "Search Todo's" })
+map("ia", "1=", "!=")
+map("n", "U", "<cmd>ea 1f<cr>")
+map("n", "<leader>bd", "<cmd>:bd<Cr>", { desc = "Delete current buffer" })
 
 -- map("n", "<leader>e", "<Cmd>Ex<Cr>")
 

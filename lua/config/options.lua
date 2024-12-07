@@ -40,20 +40,20 @@ local cursor_options = {
   "sm:block-blinkwait175-blinkoff150-blinkon175",
 }
 
-vim.opt.guicursor = cursor_options
-vim.opt.cursorlineopt = "both"
+opt.guicursor = cursor_options
+opt.cursorlineopt = "both"
 
 opt.clipboard:append("unnamedplus") -- sync with system clipboard
-opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
+opt.conceallevel = 2                -- Hide * markup for bold and italic, but not markers with substitutions
 opt.confirm = true                  -- confirm to save changes before exiting modified buffer
 opt.expandtab = true                -- spaces instead of tabs
 opt.grepprg = "rg --vimgrep"
 opt.ignorecase = true      -- Ignore case when searching
 opt.inccommand = "nosplit" -- preview incremental substitute -- NOTE: "split" shows all that is matching in a preview window
 opt.jumpoptions = "view"   -- keep number of lines from top to position when jumping through jump/changelist
-opt.laststatus = 2         -- only show one statusline
+opt.laststatus = 3         -- only show one statusline
 opt.linebreak = true       -- smarter wraps
-opt.list = true            -- show invisible characters like tab
+opt.list = false            -- show invisible characters like tab
 opt.number = true          -- Line number
 opt.relativenumber = true  -- Relative numbers
 opt.scrolloff = 2          -- Lines of context
@@ -61,6 +61,7 @@ opt.sessionoptions = { "buffers", "curdir", "folds", "globals", "help", "localop
 opt.shiftround = true -- round indent
 opt.shiftwidth = 2    -- indent size
 opt.shortmess:append({ W = true, c = true, C = true }) -- I = true to remove intro message
+opt.showmode = false
 opt.sidescrolloff = 8
 opt.signcolumn = "yes" -- always show the signcolumn, otherwise marks and stuff would shift the text each time -- NOTE: readup
 opt.smartcase = true   -- Don't ignore case with capitals

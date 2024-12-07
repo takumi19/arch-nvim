@@ -6,6 +6,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = {
+    "*.nasm",
+  },
+  callback = function(event)
+    vim.cmd("set ft=asm")
+  end
+})
+
 -- Close with q
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {
