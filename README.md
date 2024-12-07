@@ -1,6 +1,5 @@
 
 ## TODO
 
-- Set up abbreviations
-- Set up lsp
-- Set up autocompletion with basic snippets
+- Add shortcuts for gitsigns to stage hunk, unstage hunk, etc.
+- Maybe i should try using snacks/trouble, those seem cool
