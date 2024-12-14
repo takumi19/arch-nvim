@@ -2,13 +2,19 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     version = false,
-    lazy = false,
+    lazy = true,
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
     },
-    opts = function()
+    config = function()
+      require('telescope').setup {
+        extensions = {
+          fzf = {}
+        }
+      }
+      require('telescope').load_extension('fzf')
       local pickers = require('telescope.builtin')
       local map = vim.keymap.set
       map('n', '<leader><leader>', pickers.find_files, { desc = 'Find files in cwd' } )
