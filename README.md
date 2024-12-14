@@ -6,3 +6,4 @@
 - Fix cmp popups being too big
 - Fix cmp window picking completions
 - Check out blink cmp
+- Fix barbecue looking weird
