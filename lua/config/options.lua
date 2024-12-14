@@ -40,8 +40,17 @@ local cursor_options = {
   "sm:block-blinkwait175-blinkoff150-blinkon175",
 }
 
+vim.opt.fillchars = {
+  eob = ' ', -- suppress ~ at EndOfBuffer
+  -- fold = ' ', -- space character used for folding
+  -- foldopen = '', -- Unfolded text
+  -- foldsep = ' ', -- Open fold middle marker
+  -- foldclose = '', -- Folded text
+}
+
 opt.guicursor = cursor_options
-opt.cursorlineopt = "both"
+opt.cursorline = true
+opt.cursorlineopt = "number"
 
 opt.clipboard:append("unnamedplus") -- sync with system clipboard
 opt.conceallevel = 2                -- Hide * markup for bold and italic, but not markers with substitutions
