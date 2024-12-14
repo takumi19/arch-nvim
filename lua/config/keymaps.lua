@@ -20,8 +20,6 @@ map("n", "[q", "<cmd>cp<cr>")
 map({"n", "v"}, "H", "<Cmd>bprev<Cr>")
 map({"n", "v"}, "L", "<Cmd>bnext<Cr>")
 
--- map("c", "W", "w")
-
 map("x", "<leader>p", '"_dP')
 
 map("i", "<C-c>", "<Esc>")
@@ -41,6 +39,23 @@ map("ia", "1=", "!=")
 map("n", "U", "<cmd>ea 1f<cr>")
 map("n", "<leader>bd", "<cmd>:bd<Cr>", { desc = "Delete current buffer" })
 
+-- replace current word/selection with clipboard
+map("n", "gs", '<Cmd>%s/<c-r><c-w>/<c-r>"/g<CR>', { desc = "Substitute CW with clipboard" })
+
+vim.keymap.set("n", "<leader>qs", function() require("persistence").load() end, { desc = "Load last session" })
+
+-- Persistence nvim
+-- load the session for the current directory
+vim.keymap.set("n", "<leader>qs", function() require("persistence").load() end)
+
+-- select a session to load
+vim.keymap.set("n", "<leader>qS", function() require("persistence").select() end)
+
+-- load the last session
+vim.keymap.set("n", "<leader>ql", function() require("persistence").load({ last = true }) end)
+
+-- stop Persistence => session won't be saved on exit
+vim.keymap.set("n", "<leader>qd", function() require("persistence").stop() end)
 -- map("n", "<leader>e", "<Cmd>Ex<Cr>")
 
 -- map("n", "<leader>cr", function ()
