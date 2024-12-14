@@ -9,10 +9,9 @@ return {
     "saadparwaiz1/cmp_luasnip",
   },
   config = function(_, opts)
-    local cmp = require'cmp'
+    local cmp = require 'cmp'
     cmp.setup({
       snippet = {
-        -- REQUIRED - you must specify a snippet engine
         expand = function(args)
           require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
           -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
@@ -20,11 +19,42 @@ return {
           vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
         end,
       },
+      -- preselect = cmp.PreselectMode.Item,
+      mapping = {
+        ["<CR>"] = cmp.mapping(
+          cmp.mapping.confirm({
+            select = true,
+            behavior = cmp.ConfirmBehavior.Insert,
+          }),
+          { "i", "c" }
+        ),
+        ["<C-n>"] = cmp.mapping.select_next_item({
+          behavior = cmp.ConfirmBehavior.Insert,
+        }),
+        ["<C-p>"] = cmp.mapping.select_prev_item({
+          behavior = cmp.ConfirmBehavior.Insert,
+        }),
+        -- ["<C-b>"] = cmp.mapping.scroll_docs(-5),
+        -- ["<C-f>"] = cmp.mapping.scroll_docs(5),
+        ["<C-q>"] = cmp.mapping.abort(),
+      },
       sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
+        {
+          name = "nvim_lsp",
+          group_index = 2,    -- The suggestions are sorted by this (AFAIK)
+        },
         { name = 'luasnip' }, -- For luasnip users.
       }, {
-        { name = 'buffer' },
+        {
+          name = "path",
+          keyword_length = 4, -- Number of chars needed to trigger cmp
+          group_index = 4,
+        },
+        {
+          name = "buffer",
+          keyword_length = 3,
+          group_index = 5,
+        },
       })
     })
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -35,5 +65,8 @@ return {
     require('lspconfig')['clangd'].setup {
       capabilities = capabilities
     }
+    vim.diagnostic.config({
+      signs = false
+    })
   end
 }
