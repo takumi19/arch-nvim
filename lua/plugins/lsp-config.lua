@@ -23,6 +23,7 @@ return {
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
       vim.keymap.set('n', 'gr', "<cmd>Telescope lsp_references<cr>", { desc = "References" })
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
+      vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Next diagnostic" })
       vim.keymap.set({'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action, { desc = "Code actions" })
       vim.keymap.set("n", "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", { desc = "Switch source/header" })
