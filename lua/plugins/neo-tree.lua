@@ -1,6 +1,6 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  -- enabled = false,
+  enabled = false,
   init = function()
     vim.api.nvim_create_autocmd("BufEnter", {
       -- make a group to be able to delete it later
