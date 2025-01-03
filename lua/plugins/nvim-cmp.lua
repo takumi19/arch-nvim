@@ -34,8 +34,8 @@ return {
         ["<C-p>"] = cmp.mapping.select_prev_item({
           behavior = cmp.ConfirmBehavior.Insert,
         }),
-        -- ["<C-b>"] = cmp.mapping.scroll_docs(-5),
-        -- ["<C-f>"] = cmp.mapping.scroll_docs(5),
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-q>"] = cmp.mapping.abort(),
       },
       sources = cmp.config.sources({
