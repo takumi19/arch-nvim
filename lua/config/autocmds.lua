@@ -57,6 +57,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "help",
     "lspinfo",
     "checkhealth",
+    "qf",
   },
   callback = function(event)
     vim.keymap.set("n", "q", "<Cmd>q<CR>", {
