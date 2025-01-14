@@ -10,16 +10,50 @@ return {
   },
   config = function(_, opts)
     local cmp = require 'cmp'
-    local luasnip = require 'luasnip'
+    local cmp_kinds = {
+      Text = ' ',
+      Method = ' ',
+      Function = ' ',
+      Constructor = ' ',
+      Field = ' ',
+      Variable = ' ',
+      Class = ' ',
+      Interface = ' ',
+      Module = ' ',
+      Property = ' ',
+      Unit = ' ',
+      Value = ' ',
+      Enum = ' ',
+      Keyword = ' ',
+      Snippet = ' ',
+      Color = ' ',
+      File = ' ',
+      Reference = ' ',
+      Folder = ' ',
+      EnumMember = ' ',
+      Constant = ' ',
+      Struct = ' ',
+      Event = ' ',
+      Operator = ' ',
+      TypeParameter = ' ',
+    }
     cmp.setup({
       snippet = {
         expand = function(args)
-          luasnip.lsp_expand(args.body) -- For `luasnip` users.
-          -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-          -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-          -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+          vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
         end,
       },
+      window = {
+        completion = cmp.config.window.bordered {
+          border = 'single',
+          winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
+        },
+        documentation = cmp.config.window.bordered {
+          border = 'single',
+          winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
+        },
+      },
+
       -- preselect = cmp.PreselectMode.Item,
       mapping = {
         ["<CR>"] = cmp.mapping(
@@ -39,12 +73,32 @@ return {
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-q>"] = cmp.mapping.abort(),
         ['<Tab>'] = cmp.mapping(function(fallback)
-          if luasnip.jumpable(1) then
-            luasnip.jump(1)
+          if vim.snippet.active({ direction = 1 }) then
+            vim.schedule(function()
+              vim.snippet.jump(1)
+            end)
           else
             fallback()
           end
-        end),
+        end, { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+          if vim.snippet.active({ direction = -1 }) then
+            vim.schedule(function()
+              vim.snippet.jump(-1)
+            end)
+          else
+            fallback()
+          end
+        end, { 'i', 's' }),
+      },
+      formatting = {
+        fields = { 'kind', 'abbr' },
+        expandable_indicator = true,
+        format = function(_, vim_item)
+          vim_item.kind = cmp_kinds[vim_item.kind] or ''
+          vim_item.menu = ''
+          return vim_item
+        end,
       },
       sources = cmp.config.sources({
         {
@@ -74,7 +128,15 @@ return {
       capabilities = capabilities
     }
     vim.diagnostic.config({
-      signs = false
+      signs = false,
+      float = {
+        focusable = false,
+        style = "minimal",
+        border = "single",
+        -- source = "always",
+        header = "",
+        prefix = "",
+      },
     })
   end
 }
