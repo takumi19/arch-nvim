@@ -10,13 +10,14 @@ return {
   },
   config = function(_, opts)
     local cmp = require 'cmp'
+    local luasnip = require 'luasnip'
     cmp.setup({
       snippet = {
         expand = function(args)
-          require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+          luasnip.lsp_expand(args.body) -- For `luasnip` users.
           -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
           -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-          vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+          -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
         end,
       },
       -- preselect = cmp.PreselectMode.Item,
@@ -37,6 +38,13 @@ return {
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-q>"] = cmp.mapping.abort(),
+        ['<Tab>'] = cmp.mapping(function(fallback)
+          if luasnip.jumpable(1) then
+            luasnip.jump(1)
+          else
+            fallback()
+          end
+        end),
       },
       sources = cmp.config.sources({
         {

@@ -42,10 +42,10 @@ local cursor_options = {
 
 vim.opt.fillchars = {
   eob = ' ', -- suppress ~ at EndOfBuffer
-  -- fold = ' ', -- space character used for folding
-  -- foldopen = '', -- Unfolded text
-  -- foldsep = ' ', -- Open fold middle marker
-  -- foldclose = '', -- Folded text
+  fold = ' ', -- space character used for folding
+  foldopen = '', -- Unfolded text
+  foldsep = ' ', -- Open fold middle marker
+  foldclose = '', -- Folded text
 }
 
 opt.guicursor = cursor_options
@@ -53,6 +53,7 @@ opt.cursorline = true
 opt.cursorlineopt = "number"
 
 opt.clipboard:append("unnamedplus") -- sync with system clipboard
+-- opt.cmdheight = 0
 opt.conceallevel = 2                -- Hide * markup for bold and italic, but not markers with substitutions
 opt.confirm = true                  -- confirm to save changes before exiting modified buffer
 opt.expandtab = true                -- spaces instead of tabs
@@ -70,6 +71,8 @@ opt.sessionoptions = { "buffers", "curdir", "folds", "globals", "help", "localop
 opt.shiftround = true -- round indent
 opt.shiftwidth = 2    -- indent size
 opt.shortmess:append({ W = true, c = true, C = true }) -- I = true to remove intro message
+opt.showcmd = true
+opt.showcmdloc = 'statusline'
 opt.showmode = false
 opt.sidescrolloff = 8
 opt.signcolumn = "yes" -- always show the signcolumn, otherwise marks and stuff would shift the text each time -- NOTE: readup
@@ -85,6 +88,7 @@ opt.timeoutlen = 1000
 opt.undofile = true      -- write changes to a fiel and load em back when file is opened
 opt.undolevels = 10000   -- maximum number of changes that can be undone
 opt.updatetime = 500     -- milliseconds idle before swap file being written to disk
+opt.virtualedit = 'block'
 opt.winminwidth = 5
 opt.wrap = false
 
