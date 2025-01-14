@@ -13,7 +13,6 @@ return {
       vim.g.gruvbox_material_enable_bold = 1
       vim.g.gruvbox_material_diagnostic_virtual_text = 'colored'
       vim.g.gruvbox_material_transparent_background = 1
-      -- gruvbox_material_current_word
 
       local configuration = vim.fn['gruvbox_material#get_configuration']()
       local palette = vim.fn['gruvbox_material#get_palette'](
@@ -62,6 +61,33 @@ return {
       end
     end
   },
+  {
+    "zenbones-theme/zenbones.nvim",
+    -- Optionally install Lush. Allows for more configuration or extending the colorscheme
+    -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
+    -- In Vim, compat mode is turned on as Lush only works in Neovim.
+    dependencies = "rktjmp/lush.nvim",
+    lazy = true,
+    -- you can set set configuration options here
+    -- config = function()
+      --     vim.g.zenbones_darken_comments = 45
+      --     vim.cmd.colorscheme('zenbones')
+      -- end
+    },
+  -- {
+  --   'gmr458/cold.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   build = ':ColdCompile',
+  --   config = function()
+  --       require('cold').setup {
+  --           transparent_background = true,
+  --           cursorline = false,
+  --           float_borderless = true,
+  --       }
+  --       vim.cmd.colorscheme 'cold'
+  --   end,
+  -- },
   -- {
   --   "neanias/everforest-nvim",
   --   version = false,
