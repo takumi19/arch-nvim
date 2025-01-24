@@ -2,7 +2,8 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     version = false,
-    lazy = true,
+    -- cmd = "Telescope",
+    lazy = false,
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
@@ -29,6 +30,10 @@ return {
           -- layout_strategy = nil,
           -- layout_config = nil,
           extensions = {
+            ["ui-select"] = {
+              require("telescope.themes").get_dropdown {
+              }
+            },
             fzf = {
               fuzzy = true,
               override_generic_sorter = true,
@@ -140,20 +145,21 @@ return {
       }
       -- vim.tbl_deep_extend("force", theme_opts, opts)
       require('telescope').load_extension('fzf')
+      require("telescope").load_extension("ui-select")
       local pickers = require('telescope.builtin')
       local map = vim.keymap.set
       map('n', '<leader><leader>', pickers.find_files, { desc = 'Find git tracked files in cwd' })
-      map('n', '<leader>ff', function ()
+      map('n', '<leader>ff', function()
         pickers.find_files {
           no_ignore = true
         }
       end, { desc = 'Find files in cwd' })
-      map('n', '<leader>fc', function ()
+      map('n', '<leader>fc', function()
         pickers.find_files {
           cwd = vim.fn.stdpath("config")
         }
       end, { desc = 'Find config' })
-      map('n', '<leader>fh', function ()
+      map('n', '<leader>fh', function()
         pickers.find_files {
           no_ignore = true,
           hidden = true
@@ -177,11 +183,15 @@ return {
       map('n', '<leader>sM', pickers.man_pages, { desc = 'Search man pages' })
       map('n', '<leader>sm', pickers.marks, { desc = 'Search marks' })
       map('n', 'gr', '<cmd>Telescope lsp_references show_line=false<cr>', { desc = 'Lsp references' })
+      map('n', 'gd', function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end,
+        { desc = "Goto Definition" })
+      map('n', "gy", function() require("telescope.builtin").lsp_type_definitions({ reuse_win = true }) end,
+        { desc = "Goto T[y]pe Definition" })
     end
   },
   {
     "nvim-telescope/telescope-ui-select.nvim",
-
+    -- lazy = true,
     config = function()
       require("telescope").setup {
         extensions = {
