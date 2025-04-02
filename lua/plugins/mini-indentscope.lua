@@ -1,7 +1,7 @@
 return {
     'echasnovski/mini.indentscope',
     version = false,
-    event = 'BufReadPost',
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     config = function()
         local indentscope = require 'mini.indentscope'
 

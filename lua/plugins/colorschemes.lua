@@ -5,7 +5,7 @@ return {
     priority = 1000,
     config = function()
       vim.g.gruvbox_material_better_performance = 1
-      vim.g.gruvbox_material_enable_italic = true
+      vim.g.gruvbox_material_enable_italic = false
       vim.g.gruvbox_material_foreground = 'mix'
       vim.g.gruvbox_material_background = 'hard'
       vim.g.gruvbox_material_float_style = 'dim'
@@ -62,6 +62,10 @@ return {
     end
   },
   {
+    "ficcdaf/ashen.nvim",
+    lazy = true,
+  },
+  {
     "zenbones-theme/zenbones.nvim",
     -- Optionally install Lush. Allows for more configuration or extending the colorscheme
     -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
@@ -70,10 +74,10 @@ return {
     lazy = true,
     -- you can set set configuration options here
     -- config = function()
-      --     vim.g.zenbones_darken_comments = 45
-      --     vim.cmd.colorscheme('zenbones')
-      -- end
-    },
+    --     vim.g.zenbones_darken_comments = 45
+    --     vim.cmd.colorscheme('zenbones')
+    -- end
+  },
   -- {
   --   'gmr458/cold.nvim',
   --   lazy = false,

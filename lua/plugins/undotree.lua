@@ -1,8 +1,12 @@
 return {
   "mbbill/undotree",
   dependencies = "nvim-lua/plenary.nvim",
-  config = function()
-    vim.keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle, { desc = "Undotree toggle"} )
+  lazy = true,
+  cmd = "UndotreeToggle",
+  init = function()
     vim.g.undotree_SetFocusWhenToggle = 1
   end,
+  keys = {
+    { "<leader>ut", "<cmd>UndotreeToggle<cr>", { desc = "Undotree toggle"}}
+  }
 }

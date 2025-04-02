@@ -1,6 +1,8 @@
 return {
   "folke/todo-comments.nvim",
-  event = "VeryLazy",
+  enabled = true,
+  cmd = { "TodoTrouble", "TodoTelescope" },
+  event = { "BufReadPost", "BufNewFile", "BufWritePre" },
   dependencies = { "nvim-lua/plenary.nvim" },
   opts = {
     -- signs = false,
@@ -24,4 +26,7 @@ return {
       pattern = [[\b(KEYWORDS(\s\w)?):]], -- ripgrep regex
     }
   },
+  keys = {
+    { "<leader>sl", "<cmd>TodoTelescope keywords=LAB<cr>"}
+  }
 }

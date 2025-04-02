@@ -11,26 +11,6 @@ local opt = vim.opt
 -- vim.g.markdown_recommended_style = 0
 -- some folding stuff
 
--- is_x_display = function()
---   local x_display = os.getenv("DISPLAY")
---   return x_display ~= nil and x_display ~= ""
---   return true
--- end
-
--- TODO: sync not working
--- vim.g.clipboard = { -- install xclip
--- name = "xclip",
---   copy = {
---     ["+"] = "xclip -f -sel clip",
---     ["*"] = "xclip -f -sel clip",
---   },
---   paste = {
---     ["+"] = "xclip -o -sel clip",
---     ["*"] = "xclip -o -sel clip",
---   },
---   cache_enabled = 1,
--- }
-
 local cursor_options = {
   "n-v-c:block",
   "i-ci-ve:ver25",
@@ -47,6 +27,22 @@ vim.opt.fillchars = {
   foldsep = ' ', -- Open fold middle marker
   foldclose = '', -- Folded text
 }
+
+vim.diagnostic.config({
+  signs = false,
+  float = {
+    focusable = false,
+    style = "minimal",
+    border = "single",
+    -- source = "always",
+    header = "",
+    prefix = "",
+  },
+})
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+-- vim.opt.cursorcolumn = true
 
 opt.guicursor = cursor_options
 opt.cursorline = true

@@ -1,45 +1,117 @@
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
-  enabled = false,
-  opts = {
-    options = {
-      icons_enabled = true,
-      theme = 'auto',
-      component_separators = { left = '', right = ''},
-      section_separators = { left = '', right = ''},
-      disabled_filetypes = {
-        statusline = {},
-        winbar = {},
+  dependencies = { "echasnovski/mini.icons" },
+  event = { "VeryLazy" },
+  config = function()
+    local lualine = require("lualine")
+
+    local colors = {
+      blue = "#83a598",
+      green = "#8ec07c",
+      violet = "#d3869b",
+      yellow = "#d8a657",
+      red = "#FF4A4A",
+      cream = "#fff4d2",
+      black = "#1d1d1d",
+      grey = "#393939",
+      dark = "#292929",
+    }
+
+    local gruv_material = {
+      normal = {
+        a = { bg = colors.dark, fg = colors.cream, gui = "bold" },
+        b = { bg = colors.grey, fg = colors.cream, gui = "bold" },
+        c = { bg = colors.grey, fg = colors.yellow, gui = "bold" },
       },
-      ignore_focus = {},
-      always_divide_middle = true,
-      globalstatus = false,
-      refresh = {
-        statusline = 1000,
-        tabline = 1000,
-        winbar = 1000,
-      }
-    },
-    sections = {
-      lualine_a = {'mode'},
-      lualine_b = {'branch', 'diff', 'diagnostics'},
-      lualine_c = {'filename'},
-      lualine_x = {'encoding', 'fileformat', 'filetype'},
-      lualine_y = {'progress'},
-      lualine_z = {'location'}
-    },
-    inactive_sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = {'filename'},
-      lualine_x = {'location'},
-      lualine_y = {},
-      lualine_z = {}
-    },
-    tabline = {},
-    winbar = {},
-    inactive_winbar = {},
-    extensions = {}
-  }
+      insert = {
+        a = { bg = colors.blue, fg = colors.black, gui = "bold" },
+        c = { bg = colors.grey, fg = colors.yellow, gui = "bold" },
+      },
+      visual = {
+        a = { bg = colors.violet, fg = colors.black, gui = "bold" },
+        c = { bg = colors.grey, fg = colors.yellow, gui = "bold" },
+      },
+      command = {
+        a = { bg = colors.green, fg = colors.black, gui = "bold" },
+        c = { bg = colors.grey, fg = colors.yellow, gui = "bold" },
+      },
+      terminal = {
+        a = { bg = colors.red, fg = colors.black, gui = "bold" },
+        c = { bg = colors.grey, fg = colors.yellow, gui = "bold" },
+      },
+      replace = {
+        a = { bg = colors.blue, fg = colors.black, gui = "bold" },
+        c = { bg = colors.grey, fg = colors.yellow, gui = "bold" },
+      },
+      inactive = {
+        a = { bg = colors.green, fg = colors.black, gui = "bold" },
+        c = { bg = colors.grey, fg = colors.yellow, gui = "bold" },
+      },
+    }
+
+    -- configure lualine with modified theme
+    lualine.setup({
+      options = {
+        theme = gruv_material,
+        component_separators = { left = "│", right = "│" },
+        section_separators = { left = "", right = "" },
+        disabled_filetypes = { "snacks_dashboard" },
+      },
+      sections = {
+        lualine_a = {
+          "mode",
+        },
+        lualine_b = {
+          "branch",
+          "diff",
+          "diagnostics",
+          -- {
+          --   "buffers",
+          --   buffers_color = {
+          --     active = { bg = colors.grey, fg = colors.yellow, gui = "bold" },
+          --     inactive = { bg = colors.grey, fg = colors.cream, gui = "italic" },
+          --   },
+          --   symbols = {
+          --     modified = " ●",
+          --     alternate_file = "",
+          --     directory = "",
+          --   },
+          --   mode = 2,
+          -- },
+        },
+        lualine_c = {
+          {
+            "filename",
+            file_status = true,
+            path = 3,
+            shorting_target = 0,
+          },
+        },
+        lualine_x = {},
+        lualine_y = {
+          "searchcount",
+          "selectioncount",
+          "encoding",
+          "filetype",
+        },
+        lualine_z = {
+          "progress",
+          "location",
+        },
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { "filename" },
+        lualine_x = { "location" },
+        lualine_y = {},
+        lualine_z = {},
+      },
+      tabline = {},
+      winbar = {},
+      inactive_winbar = {},
+      extensions = {},
+    })
+    vim.opt.laststatus = 3
+  end,
 }

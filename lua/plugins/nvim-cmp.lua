@@ -1,5 +1,6 @@
 return {
   "hrsh7th/nvim-cmp",
+  event = "InsertEnter",
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
@@ -127,16 +128,5 @@ return {
     require('lspconfig')['clangd'].setup {
       capabilities = capabilities
     }
-    vim.diagnostic.config({
-      signs = false,
-      float = {
-        focusable = false,
-        style = "minimal",
-        border = "single",
-        -- source = "always",
-        header = "",
-        prefix = "",
-      },
-    })
   end
 }
